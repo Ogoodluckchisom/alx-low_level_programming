@@ -1,3 +1,5 @@
+#include "main.h"
+
 /**
  * _atoi - a function that convert a string to an integer.
  * @s: a pointer that points to string
@@ -7,27 +9,29 @@
 
 int _atoi(char *s)
 {
-	int i, int_num;
-	short sign, catch_it;
+	int c = 0;
+	unsigned int ni = 0;
+	int min = 1;
+	int isi = 0;
 
-	i = int_num = 0;
-	catch_it = 0;
-	sign = 1;
-
-	while (s[i] != '\0')
+	while (s[c])
 	{
-		if (s[i] == '-')
-			sign *= -1;
-		if (s[i] >= '0' && s[i] <= '9')
+		if (s[c] == 45)
 		{
-			catch_it = 1;
-			int_num *= 10;
-			int_num += (s[i] - '0');
+			min *= -1;
 		}
-		else if (catch_it == 1)
+		while (s[c] >= 48 && s[c] <= 57)
+		{
+			isi = 1;
+			ni = (ni * 10) + (s[c] - '0');
+			c++;
+		}
+		if (isi == 1)
+		{
 			break;
-		i++;
+		}
+		c++;
 	}
-	int_num *= sign;
-	return (int_num);
+	ni *= min;
+	return (ni);
 }
