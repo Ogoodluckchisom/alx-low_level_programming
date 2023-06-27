@@ -1,11 +1,11 @@
-#include "main.h"
+#include "holberton.h"
 
 /**
  * times_table - prints the times table from 0 - 9.
  *
  * Return: void
  */
-int times_table(void)
+void times_table(void)
 {
 	int rows, columns, times;
 
@@ -34,5 +34,4 @@ int times_table(void)
 		}
 		_putchar('\n');
 	}
-	return(0);
 }
