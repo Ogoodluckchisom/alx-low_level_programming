@@ -2,31 +2,34 @@
 #include <stdlib.h>
 
 /**
- * main - a function prints opcode
- * @argc: arguments from comment line
- * @argv: each arguments contents
- *
- * Return: 0 on success, others if fail.
+ * main - prints opcode of own main function
+ * @argc: argument count
+ * @argv: array of arguments
+ * Return: 1 or 2 on fail, 0 on success
  */
-
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
-	int a, i;
+	int bytes, i;
+	unsigned char *func_ptr;
 
-	i = -1;
 	if (argc != 2)
 	{
 		printf("Error\n");
 		exit(1);
 	}
-	a = atoi(argv[1]);
-	if (a < 0)
+	bytes = atoi(argv[1]);
+	if (bytes < 0)
 	{
 		printf("Error\n");
 		exit(2);
 	}
-	while (++i < a && main)
-		printf("%02x ", ((unsigned char *)main)[i]);
-	printf("\n");
+	func_ptr = (unsigned char *)main;
+	i = 0;
+	if (bytes > 0)
+	{
+		while (i < (bytes - 1))
+			printf("%02hhx ", func_ptr[i++]);
+		printf("%hhx\n", func_ptr[i]);
+	}
 	return (0);
 }
